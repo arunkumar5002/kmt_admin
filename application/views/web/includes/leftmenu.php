@@ -1,5 +1,18 @@
 <?php $menu_user_id = $this->session->userdata('user_id'); ?>
+
+
+<style>
+	.nav-item .nav-link{
+		display: flex !important;
+		gap: 10px;
+    align-items: center !important;
+	}
+	.sidebar{
+		padding-top:10px;
+	}
+</style>
 <!-- Main Sidebar Container -->
+<<<<<<< Updated upstream
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
 	<a href="<?= base_url() . 'dashboard' ?>" class="brand-link" style="text-align:center;background:#fff;">
@@ -11,6 +24,19 @@
 		<!-- Sidebar user panel (optional) -->
 
 		<?php if ($this->session->userdata('user_emp') == 1) { ?>
+=======
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#fff !important;">
+    <!-- Brand Logo -->
+    <a href="<?=base_url().'dashboard' ?>" class="brand-link" style="text-align:center;background:#fff; border-bottom:none;">
+		<img src="<?php echo base_url(logo());?>" alt="AdminLTE Logo" class="" style="opacity: .8; width: 57px; height: 100%;">
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar" style="background-color:#0e3d70; border-top-right-radius: 20px; border-top-left-radius: 20px;">
+      <!-- Sidebar user panel (optional) -->
+		
+		<?php if($this->session->userdata('user_emp')==1){ ?>
+>>>>>>> Stashed changes
 			<?php $user_details = $this->session->userdata('user_details'); ?>
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 				<div class="image">
@@ -27,6 +53,7 @@
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+<<<<<<< Updated upstream
 
 				<li class="nav-item">
 					<a href="<?= base_url() . 'dashboard' ?>" class="nav-link">
@@ -47,6 +74,12 @@
 						<a href="<?= base_url() . 'users_master' ?>" class="nav-link">
 							<i class="fas fa-user-cog"></i>
 							<p>User Access </p>
+=======
+		          <li class="nav-item">
+						<a href="<?=base_url().'dashboard' ?>" class="nav-link">
+						<i class="fi fi-rr-apps"></i>
+							<p>Dashboard</p>
+>>>>>>> Stashed changes
 						</a>
 					</li>
 				<?php } ?>
@@ -98,6 +131,7 @@
 							</li>
 
 
+<<<<<<< Updated upstream
 							<!--<li class="nav-item">
 								<a href="<?php echo base_url() ?>Hr/salary_master" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
@@ -135,17 +169,90 @@
 								</a>
 							</li>
 							<!--<li class="nav-item">
+=======
+	<?php
+		$val = get_role_permission_list(1);
+		if(!empty($val)){
+	?>
+	<li class="nav-item">
+		<a href="#" class="nav-link">
+			<i class="fas fa-users"></i>
+			<p>HR</p>
+			<i class="right fas fa-angle-left"></i>
+		</a>
+		
+            <li class="nav-item">
+                <a href="<?= base_url().'employee_master' ?>" class="nav-link ">
+					
+					<p>Employee Master</p>
+                </a>
+            </li>
+			
+            <li class="nav-item">
+                <a href="<?= base_url().'attendance' ?>" class="nav-link">
+					
+					<p>Attendance Master</p>
+                </a>
+            </li>
+			<li class="nav-item">
+				<a href="<?= base_url().'view_attendance_report' ?>" class="nav-link">
+					
+					<p> Attendance List</p>
+				</a>
+			</li>
+			
+			
+			<!-- <li class="nav-item">
+				<a href="<?php echo base_url()?>Hr/salary_master" class="nav-link">
+					
+					<p>Salary Master</p>
+				</a>
+			</li> -->
+			
+			<li class="nav-item">
+				<a href="<?php echo base_url() ?>Hr/payslip_generator" class="nav-link">
+					
+					<p>Payslip Generator</p>
+				</a>
+			</li>
+			<!-- <li class="nav-item">
+				<a href="<?php echo base_url() ?>Hr/levy_master" class="nav-link">
+					
+					<p>Levy Master </p>
+				</a>
+			</li> -->
+			<li class="nav-item">
+				<a href="<?php echo base_url() ?>Hr/salary_slip" class="nav-link">
+					
+					<p>Salary Slip </p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="<?php echo base_url() ?>Hr/pay_rol" class="nav-link">
+					
+					<p> Payroll </p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="<?php echo base_url() ?>Hr/salary_sheet" class="nav-link">
+					
+					<p>Salary Sheet </p>
+				</a>
+			</li>
+			<!--<li class="nav-item">
+>>>>>>> Stashed changes
 				<a href="<?php echo base_url() ?>Hr/leave_category" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+					
 					<p>Leave category </p>
 				</a>
 			</li>-->
 							<!--<li class="nav-item">
                 <a href="<?php echo base_url() ?>Hr/leave_management_list" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+					
 					<p>Leave Management </p>
                 </a>
             </li>-->
+<<<<<<< Updated upstream
 							<li class="nav-item">
 								<a href="<?php echo base_url() ?>Perfomance/employee_perform_list" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
@@ -490,6 +597,19 @@
                 <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Aging - Invoice - Purchase </p>
+=======
+			<li class="nav-item">
+               <a href="<?php echo base_url() ?>Perfomance/employee_perform_list" class="nav-link">
+					
+					<p>Employee Performance </p>
+                </a>
+            </li>
+			
+			<li class="nav-item">
+               <a href="<?php echo base_url() ?>Hr/holidays" class="nav-link">
+					
+					<p> Holidays  </p>
+>>>>>>> Stashed changes
                 </a>
               </li>
 			  

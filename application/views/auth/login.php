@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/adminlte.min.css">
+    <!-- flaticon css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>node_modules\@flaticon\flaticon-uicons\css\all\all.css">
 	
 	<script src="<?= base_url().'assets/plugins/jquery/jquery.min.js' ?>"></script>
 	<link rel="stylesheet" href="<?= base_url().'assets/toastr/toastr.css' ?>">
@@ -20,12 +22,13 @@
 </head>
 <body class="hold-transition login-page" style="background-image:url(<?= base_url().'assets/login_backend.jpg' ?>); background-repeat:no-repeat; background-size:cover; background-position: center; ">
 <div class="login-box">
-  <div class="login-logo">
-    <img class="animation__shake" src="<?php echo base_url(logo());?>" alt="AdminLTELogo" height="140" width="120">
-  </div>
+ 
   <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
+  <div class="card" style="border-radius: 15px;">
+    <div class="card-body login-card-body" style="border-radius: 15px;">
+	<div class="login-logo">
+    <img class="animation__shake" src="<?php echo base_url(logo());?>" alt="AdminLTELogo">
+  </div>
       <p class="login-box-msg">Sign in to start your session</p>
 
 		<form id="LoginForm" autocomplete="OFF">
@@ -34,6 +37,7 @@
 				<div class="input-group-append">
 					<div class="input-group-text">
 						<span class="fas fa-user"></span>
+					
 					</div>
 				</div>
 			</div>
@@ -41,7 +45,7 @@
 				<input type="password" class="form-control" placeholder="Password" name="password">
 				<div class="input-group-append">
 					<div class="input-group-text">
-						<span class="fas fa-lock"></span>
+					<i class="fi fi-sr-lock"></i>
 					</div>
 				</div>
 			</div>
@@ -49,7 +53,7 @@
 				<input type="checkbox" id="remember">
 				<label for="remember">Remember Me</label>
 			</div>
-			<button type="submit" class="btn btn-primary">Sign In</button>
+			<button type="submit" class="btn btn-primary mt-3">Sign In</button>
 		</form>
     </div>
 

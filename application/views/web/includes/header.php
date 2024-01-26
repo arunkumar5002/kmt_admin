@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/summernote/summernote-bs4.min.css">
+  <!-- flaticon css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>node_modules\@flaticon\flaticon-uicons\css\all\all.css">
   
 	<link rel="stylesheet" href="<?= base_url().'assets/toastr/toastr.css' ?>">
 	<script src="<?= base_url().'assets/toastr/toastr.js' ?>"></script>
@@ -33,6 +35,11 @@
 		.text-required{
 			color:red;
 		}
+    
+    i{
+    display: inline-flex !important;
+    align-items: center !important;
+    }
 	</style>
 	
 </head>
