@@ -1,0 +1,26 @@
+04.04.2023
+ALTER TABLE `employee` CHANGE `emergency_numer` `emergency_mobile_no` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `employee` CHANGE `image` `profile_image` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `employee` CHANGE `created_at` `created_at` DATETIME NULL DEFAULT NULL, CHANGE `updated_at` `updated_at` DATETIME NULL DEFAULT NULL;
+ALTER TABLE `employee` CHANGE `gender` `gender` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+DROP TABLE `employee_certificates`
+
+ALTER TABLE `user` CHANGE `user_admin` `user_admin` INT(11) NOT NULL COMMENT '1 - Yes , 0 - No';
+ALTER TABLE `tbl_attendance_master` ADD `attend_month_year` VARCHAR(250) NULL AFTER `attend_notes`;
+ALTER TABLE `employee_certificate` CHANGE `certificate_file` `certificate_image` VARCHAR(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+15.04.2023
+ALTER TABLE `tbl_attendance_master` ADD `attend_work_hours` VARCHAR(250) NULL AFTER `attend_out_time`;
+ALTER TABLE `tbl_attendance_master` CHANGE `attend_date` `attend_date` VARCHAR(250) NULL DEFAULT NULL;
+ALTER TABLE `tbl_attendance_master` ADD `attend_approve_status` INT NOT NULL COMMENT '0 - No , 1 - Paid , 2 - Unpaid ' AFTER `attend_import_by`, ADD `attend_approve_by` INT NOT NULL AFTER `attend_approve_status`;
+ALTER TABLE `tbl_attendance_master` CHANGE `attend_approve_by` `attend_approve_by` INT(11) NULL;
+
+17.04.2023
+ALTER TABLE `tbl_attendance_master` CHANGE `attend_approve_status` `attend_approve_status` INT(11) NOT NULL COMMENT '0 - No , 1 - Salary Paid , 2 - OT Paid, 3 - Government Paid , 4 - Deduction';
+ALTER TABLE `tbl_attendance_master` CHANGE `attend_approve_status` `attend_action_status` INT(11) NOT NULL COMMENT '0 - No , 1 - Salary Paid , 2 - OT Paid, 3 - Government Paid , 4 - Deduction', CHANGE `attend_approve_by` `attend_action_by` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `tbl_attendance_master` ADD `attend_action_notes` TEXT NULL AFTER `attend_action_by`;
+ALTER TABLE `tbl_attendance_master` ADD `attend_action_at` DATETIME NULL AFTER `attend_action_notes`;
+
+
+24.04.2023
+ALTER TABLE `tbl_leave_request_master` ADD `request_status` INT NOT NULL COMMENT '0 - No , 1 - Approve , 2 - Reject' AFTER `request_created_by`;

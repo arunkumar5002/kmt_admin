@@ -1,0 +1,9 @@
+01.01.2023
+ALTER TABLE `tbl_attendance_leave_category` CHANGE `paid` `category_type` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `loan_master` ADD `loan_balance_amount` INT NULL AFTER `loan_amount`;
+ALTER TABLE `tbl_attendance_master` CHANGE `attend_action_status` `attend_action_status` INT(11) NOT NULL COMMENT '0 - No , 1 - Salary Paid , 2 - OT Paid, 3 - Government Paid , 4 - Deduction, 5 - Off Paid';
+ALTER TABLE `tbl_attendance_master` ADD `attend_amount` INT NULL AFTER `attend_action_by`, ADD `attend_leave_category` INT NULL AFTER `attend_amount`;
+
+
+11.05.2023
+ALTER TABLE `tbl_salary_details` CHANGE `details_type` `details_type` INT(11) NULL DEFAULT NULL COMMENT '1 - Earnings , 2 - Deductions , 3 - Loan';

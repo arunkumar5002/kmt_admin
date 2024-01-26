@@ -1,0 +1,17 @@
+22.03.2023
+ALTER TABLE `tbl_attendance_leave_category` CHANGE `category_name` `category_name` VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL, CHANGE `category_status` `category_status` VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+24.03.2023
+ALTER TABLE `tbl_attendance_leave_category` ADD `category_value` INT NULL AFTER `category_name`;
+
+25.03.2023
+ALTER TABLE `tbl_salary_earninings` DROP `earninings_type`;
+
+28.03.2023
+ALTER TABLE `user` CHANGE `status` `status` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '1 - Active , 0 -Inactive';
+ALTER TABLE `user` ADD `user_admin` INT NULL COMMENT '1 - Yes , 0 - No' AFTER `status`, ADD `user_role` INT NULL AFTER `user_admin`;
+UPDATE `user` SET `user_admin` = '1' WHERE `user`.`user_id` = 1;
+UPDATE `user` SET `user_role` = '0' WHERE `user`.`user_id` = 1;
+ALTER TABLE `tbl_user_account_type` CHANGE `created_at` `created_at` DATETIME NULL DEFAULT NULL, CHANGE `updated_at` `updated_at` DATETIME NULL DEFAULT NULL;
+ALTER TABLE `tbl_user_account_type` ADD `account_permission` INT NULL COMMENT '1 - Yes , 0 - No' AFTER `account_status`;
+

@@ -1,0 +1,139 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Auth extends CI_Controller
+{
+
+	public function index()
+	{
+		$this->load->view('auth/login');
+	}
+	
+	
+	public function dashboard() {
+
+		$data['content'] = 'web/dashboard';
+		
+		$this->load->view('web/template', $data);
+    }
+	
+	
+	public function logincheck(){
+
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+
+		$exits = $this->Auth_model->get_record("user","*",array('username'=>$username, 'status'=>1));
+		if(isset($exits->user_id )){
+			$hash = $exits->password;
+			if (password_verify($password, $hash)){
+				$this->session->set_userdata('is_logged_in','1');
+				$this->session->set_userdata('user_id',$exits->user_id);
+				
+				$output = array(
+					'status'	=> 'Success',
+					'msg'		=> 'Login Successfully',
+					'link'		=> base_url().'dashboard',
+				);
+			}else{
+			    $output = array(
+					'status'	=>'Error',
+					'msg'		=>'Invaild Login Details',
+				);
+			}
+		}else{
+			$output = array(
+				'status'	=>'Error',
+				'msg'		=>'Invaild Login Details',
+			);
+		}
+		echo json_encode($output);
+	}
+	
+	
+	
+	
+	
+
+	public function logout()
+	{
+		redirect("/");
+	}
+	
+}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Form</title>
+  </head>
+  <body>
+    <h1>Login Form</h1>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br><br>
+      <button type="button" onclick="login()">Login</button>
+    </form>
+    <script>
+      function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        
+        // Database 1
+        var db1 = {
+          "user1": "password1",
+          "user2": "password2",
+          "user3": "password3"
+        };
+        
+        // Database 2
+        var db2 = {
+          "user4": "password4",
+          "user5": "password5",
+          "user6": "password6"
+        };
+        
+        // Check if the username and password match in either database
+        if (db1[username] == password || db2[username] == password) {
+          alert("Login successful!");
+        } else {
+          alert("Invalid username or password.");
+        }
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

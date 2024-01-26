@@ -1,0 +1,1 @@
+ALTER TABLE `employee_certificates` ADD `image_id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`image_id`);

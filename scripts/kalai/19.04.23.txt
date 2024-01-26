@@ -1,0 +1,1 @@
+ALTER TABLE `user_role` ADD `menu_id` INT(11) NULL DEFAULT NULL AFTER `user_id`;
