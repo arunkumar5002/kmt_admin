@@ -40,6 +40,9 @@
     display: inline-flex !important;
     align-items: center !important;
     }
+    .content-wrapper {
+    background-color: #ffffff;
+}
 	</style>
 	
 </head>

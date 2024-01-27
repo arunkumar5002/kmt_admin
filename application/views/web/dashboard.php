@@ -1,4 +1,14 @@
 <?php echo load_datatables(); ?>
+
+<style>
+	.small-box{
+		border-radius: 1rem !important;
+	}
+	.small-box > .small-box-footer{
+		border-bottom-left-radius:  1rem !important;
+		border-bottom-right-radius:  1rem !important;
+	}
+</style>
 <div class="content-wrapper">
     <section class="content-header">
 		<div class="container-fluid">

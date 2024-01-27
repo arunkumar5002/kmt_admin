@@ -12,7 +12,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fi fi-br-bars-sort"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fi fi-rr-menu-burger"></i></a>
       </li>
       
     </ul>
@@ -21,7 +21,7 @@
     <ul class="navbar-nav ml-auto">
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" aria-expanded="true">
-				<i class="far fa-bell"></i>
+			<i class="fi fi-sr-bell"></i>
 				<!--<span class="badge badge-warning navbar-badge">15</span>-->
 			</a>
 			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
@@ -64,7 +64,7 @@
 		</li>
 		<li class="nav-item">
 			<a class="nav-link"  href="<?php echo base_url('logout');?>" title="Signout">
-				<i class="fas fa-sign-out-alt"></i>
+			<i class="fi fi-br-sign-out-alt"></i>
 			</a>
 		</li>
       
