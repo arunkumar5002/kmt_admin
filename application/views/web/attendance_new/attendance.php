@@ -28,10 +28,11 @@
 
                             </div>
                             <div class="col-md-8 col-sm-3 col-xs-3" style="text-align:end;">
-							<input type="button" onclick="printDiv('printableArea')" value="Print Attendance" rel="noopener"
-                                    target="_blank" class="btn btn-success">
-									
-							<input type="button" class='DTTT_button btn btn-info pdfAttendance'value="Get PDF"><i class="fa fa-file-pdf-o"></i>
+                                <input type="button" onclick="printDiv('printableArea')" value="Print Attendance"
+                                    rel="noopener" target="_blank" class="btn btn-success">
+
+                                <input type="button" class='DTTT_button btn btn-info pdfAttendance' value="Get PDF"><i
+                                    class="fa fa-file-pdf-o"></i>
                             </div>
 
                         </div>
@@ -161,137 +162,154 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                           
 
-                                        <div class="container-fluid">
-                                            <div class="table-responsive" style="overflow-x:auto">
-                                                <table id="example" class="table table-striped responsive-utilities">
-                                                    <thead>
-                                                        <tr class="headings">
-                                                            <td colspan="2" class="sticky__item">Date</td>
-                                                            <?php for ($i = 1; $i <= $days; $i++) { ?>
-                                                                <td>
+                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="container-fluid">
+                                        <div class="table-responsive" style="overflow-x:auto">
+                                            <table id="example" class="table table-striped responsive-utilities">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <td colspan="2" class="sticky__item">Date</td>
+                                                        <?php for ($i = 1; $i <= $days; $i++) { ?>
+                                                            <td>
+                                                                <?php echo $i; ?>
+                                                            </td>
+                                                        <?php } ?>
+                                                        <th rowspan="2"> Absent </th>
+                                                    </tr>
+                                                    <tr class="headings">
+                                                        <td colspan="2" style=" font-size: 13px;" class="sticky__item">
+                                                            Day</td>
+                                                        <?php for ($i = 1; $i <= $days; $i++) {
+                                                            $date = $year . "-" . $mon . "-" . $i;
+                                                            $d = date("D", strtotime($date));
+                                                            ?>
+                                                            <td style=" font-size: 13px;">
+                                                                <?php echo substr($d, 0, -2); ?>
+                                                            </td>
+                                                        <?php } ?>
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php
+                                                    /* $presentTotal = 0; */
+                                                    $absentTotal = 0;
+                                                    $halfabsentTotal = 0;
+                                                    ?>
+                                                    <?php $i = 1;
+                                                    if ($employee) {
+                                                        foreach ($employee as $emp) {
+                                                            /* $presentTotal = 0;*/
+                                                            $absentTotal = 0;
+                                                            $halfabsentTotal = 0;
+                                                            ?>
+                                                            <tr>
+                                                                <td style=" font-size: 13px;" class="sticky__item">
                                                                     <?php echo $i; ?>
                                                                 </td>
-                                                            <?php } ?>
-															<th rowspan="2"> Absent </th>
-                                                        </tr>
-                                                        <tr class="headings">
-                                                            <td colspan="2" style=" font-size: 13px;"
-                                                                class="sticky__item">Day</td>
-                                                            <?php for ($i = 1; $i <= $days; $i++) {
-                                                                $date = $year . "-" . $mon . "-" . $i;
-                                                                $d = date("D", strtotime($date));
-                                                                ?>
-                                                                <td style=" font-size: 13px;">
-                                                                    <?php echo substr($d, 0, -2); ?>
+                                                                <td style=" font-size: 10px;"
+                                                                    class="emp__name sticky__item--name">
+                                                                    <?php echo $emp->employeename; ?>
                                                                 </td>
-                                                            <?php } ?>
-                                                        </tr>
+                                                                <?php for ($j = 1; $j <= $days; $j++) {
+                                                                    $day = $j;
 
-                                                    </thead>
+                                                                    $monthName = date('M', mktime(0, 0, 0, $mon, 10));
 
-                                                    <tbody>
-                                                        <?php
-/* $presentTotal = 0; */
-                                                        $absentTotal = 0;
-$halfabsentTotal = 0;
- ?>
-                                                        <?php $i = 1;
-                                                        if ($employee) {
-                                                            foreach ($employee as $emp) {
-                                                               /* $presentTotal = 0;*/
-                                                                $absentTotal = 0;
-																$halfabsentTotal = 0;
-                                                                ?>
-                                                                <tr>
-                                                                    <td style=" font-size: 13px;" class="sticky__item">
-                                                                        <?php echo $i; ?>
-                                                                    </td>
-                                                                    <td style=" font-size: 10px;"
-                                                                        class="emp__name sticky__item--name">
-                                                                        <?php echo $emp->employeename; ?>
-                                                                    </td>
-                                                                    <?php for ($j = 1; $j <= $days; $j++) {
-                                                                        $day = $j;
+                                                                    $attend_month_year = sprintf("%02d", $day) . "-" . $monthName . "-" . $year;
 
-                                                                        $monthName = date('M', mktime(0, 0, 0, $mon, 10));
+                                                                    $get_emp_attendance = get_emp_attendance($emp->emp_id, $attend_month_year);
 
-                                                                        $attend_month_year = sprintf("%02d", $day) . "-" . $monthName . "-" . $year;
+                                                                    //if(!empty($get_emp_attendance)){	 
+                                                                    //foreach($get_emp_attendance as $atten){ 
+                                                                    $class = "";
+                                                                    $value = "";
 
-                                                                        $get_emp_attendance = get_emp_attendance($emp->emp_id, $attend_month_year);
+                                                                    if (isset($get_emp_attendance->attend_status)) {
+                                                                        if ($get_emp_attendance->attend_status == 'Present' || $get_emp_attendance->attend_status == 'WeeklyOff Present') {
+                                                                            $class = "Present";
+                                                                            $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" ></i>';
+                                                                            /* $presentTotal++; */
+                                                                        } else if ($get_emp_attendance->attend_status == 'Absent') {
+                                                                            $class = "Absent";
+                                                                            $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>';
+                                                                            $absentTotal++;
+                                                                        } else if ($get_emp_attendance->attend_status == '½Present') {
 
-                                                                        //if(!empty($get_emp_attendance)){	 
-                                                                        //foreach($get_emp_attendance as $atten){ 
-                                                                        $class = "";
-                                                                        $value = "";
-
-                                                                        if (isset($get_emp_attendance->attend_status)) {
-                                                                            if ($get_emp_attendance->attend_status == 'Present' || $get_emp_attendance->attend_status == 'WeeklyOff Present') {
-                                                                                $class = "Present";
-                                                                                $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" ></i>';
-                                                                                /* $presentTotal++; */
-                                                                            } else if ($get_emp_attendance->attend_status == 'Absent') {
-                                                                                $class = "Absent";
-                                                                                $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>';
-                                                                                $absentTotal++;
-                                                                            } else if ($get_emp_attendance->attend_status == '½Present') {
-
-                                                                                if ($get_emp_attendance->attend_in_time >= '12:00') {
-                                                                                    $class = "attend_in_time";
-                                                                                    $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i>';
-                                                                                } else if ($get_emp_attendance->attend_in_time <= '12:00') {
-                                                                                    $class = "attend_in_time";
-                                                                                    $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i>';
-                                                                                }
-                  $halfabsentTotal++;
-
+                                                                            if ($get_emp_attendance->attend_in_time >= '12:00') {
+                                                                                $class = "attend_in_time";
+                                                                                $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i>';
+                                                                            } else if ($get_emp_attendance->attend_in_time <= '12:00') {
+                                                                                $class = "attend_in_time";
+                                                                                $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i>';
                                                                             }
-                                                                            echo "<td class='" . $class . "'>" . $value . "</td>";
-                                                                        } else {
-                                                                            echo '<td style=" font-size: 10px; min-width:35px!important;">-</td>';
-                                                                        }
-                                                                        //}  } else{ echo "<td>-</td>";  }
-                                                                    }
-                                                                    ?>
-                                                                   <!-- <td>
-                                                                       <?php echo $presentTotal; ?> Days
-                                                                    </td> --> 
-                                                                    <td>
-                                                                        <?php echo $absentTotal + $halfabsentTotal; ?>
-                                                                    </td>
-                                                                </tr>
-                                                                <?php $i++;
-                                                            }
-                                                        } ?>
-                                                    </tbody>
+                                                                            $halfabsentTotal++;
 
-                                                </table>
-                                            </div>
+                                                                        }
+                                                                        echo "<td class='" . $class . "'>" . $value . "</td>";
+                                                                    } else {
+                                                                        echo '<td style=" font-size: 10px; min-width:35px!important;">-</td>';
+                                                                    }
+                                                                    //}  } else{ echo "<td>-</td>";  }
+                                                                }
+                                                                ?>
+                                                                <!-- <td>
+                                                                       <?php echo $presentTotal; ?> Days
+                                                                    </td> -->
+                                                                <td class="text-center">
+                                                                    <a href="" type="button" 
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                                        <?php echo $absentTotal + $halfabsentTotal; ?>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <?php $i++;
+                                                        }
+                                                    } ?>
+                                                </tbody>
+
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
-                        <br />
-                        <br />
-                        <br />
-
                     </div>
+
+                    <br />
+                    <br />
+                    <br />
+
                 </div>
             </div>
-
         </div>
+
+</div>
 </div>
 </section>
-</div>
+
+
 <style>
     .ui-datepicker-calendar {
         display: none;
     }
 </style> <!-- Datatables -->
+<script>
+    var myModal = document.getElementById('exampleModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>
 <script src="<?php echo base_url() ?>site/admin/js/datatables/js/jquery.dataTables.js"></script>
 <script src="<?php echo base_url() ?>site/admin/js/datatables/tools/js/dataTables.tableTools.js"></script>
 <script>
@@ -353,3 +371,37 @@ $halfabsentTotal = 0;
         document.body.innerHTML = originalContents;
     }
 </script>
+
+
+<!-- Leave modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="exampleModalLabel">Absent Details</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div>
+                                                            <label for="">Total Absents</label>
+                                                            <p>12/02/2024</p>
+                                                            </div>
+                                                            <div>
+                                                            <label for="">Half A Day Absents</label>
+                                                            <p class="mb-0">12/02/2024 </p>
+                                                            <p class="mb-0 " style="font-weight:800;">Morning : <span><i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" ></i></span></p>
+                                                            <p class="mb-0" style="font-weight:800;">Afternoon : <span><i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i></span></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                           
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
