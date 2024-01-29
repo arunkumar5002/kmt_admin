@@ -31,7 +31,7 @@
 							<input type="button" onclick="printDiv('printableArea')" value="Print Attendance" rel="noopener"
                                     target="_blank" class="btn btn-success">
 									
-							<input type="button" class='DTTT_button btn btn-info pdfAttendance'value="Pdf "><i class="fa fa-file-pdf-o"></i>
+							<input type="button" class='DTTT_button btn btn-info pdfAttendance'value="Get PDF"><i class="fa fa-file-pdf-o"></i>
                             </div>
 
                         </div>
@@ -174,8 +174,7 @@
                                                                     <?php echo $i; ?>
                                                                 </td>
                                                             <?php } ?>
-                                                            <th rowspan="2"> Present </th>
-                                                            <th rowspan="2"> Absent </th>
+															<th rowspan="2"> Absent </th>
                                                         </tr>
                                                         <tr class="headings">
                                                             <td colspan="2" style=" font-size: 13px;"
@@ -194,14 +193,16 @@
 
                                                     <tbody>
                                                         <?php
-                                                        $presentTotal = 0;
+/* $presentTotal = 0; */
                                                         $absentTotal = 0;
-                                                        ?>
+$halfabsentTotal = 0;
+ ?>
                                                         <?php $i = 1;
                                                         if ($employee) {
                                                             foreach ($employee as $emp) {
-                                                                $presentTotal = 0;
+                                                               /* $presentTotal = 0;*/
                                                                 $absentTotal = 0;
+																$halfabsentTotal = 0;
                                                                 ?>
                                                                 <tr>
                                                                     <td style=" font-size: 13px;" class="sticky__item">
@@ -229,7 +230,7 @@
                                                                             if ($get_emp_attendance->attend_status == 'Present' || $get_emp_attendance->attend_status == 'WeeklyOff Present') {
                                                                                 $class = "Present";
                                                                                 $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" ></i>';
-                                                                                $presentTotal++;
+                                                                                /* $presentTotal++; */
                                                                             } else if ($get_emp_attendance->attend_status == 'Absent') {
                                                                                 $class = "Absent";
                                                                                 $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>';
@@ -243,7 +244,7 @@
                                                                                     $class = "attend_in_time";
                                                                                     $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i>';
                                                                                 }
-
+                  $halfabsentTotal++;
 
                                                                             }
                                                                             echo "<td class='" . $class . "'>" . $value . "</td>";
@@ -253,11 +254,11 @@
                                                                         //}  } else{ echo "<td>-</td>";  }
                                                                     }
                                                                     ?>
+                                                                   <!-- <td>
+                                                                       <?php echo $presentTotal; ?> Days
+                                                                    </td> --> 
                                                                     <td>
-                                                                        <?php echo $presentTotal; ?> Days
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $absentTotal; ?> Days
+                                                                        <?php echo $absentTotal + $halfabsentTotal; ?>
                                                                     </td>
                                                                 </tr>
                                                                 <?php $i++;
