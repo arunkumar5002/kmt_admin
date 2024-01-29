@@ -21,17 +21,17 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="row" style="align-items: center;margin:30px 25px 30px 19px">
-                            <div class="col-md-6 col-sm-4 col-xs-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 <input type="text" value="<?php echo $month; ?>" placeholder="Attendance Month"
                                     id="attendance_month" name="attendance_month" class="datepicker form-control"
                                      required>
                                 
                             </div>
-                            <div class="col-md-6 col-sm-3 col-xs-3" style="text-align:end;">
+                            <div class="col-md-8 col-sm-3 col-xs-3" style="text-align:end;">
 							<input type="button" onclick="printDiv('printableArea')" value="Print Attendance" rel="noopener"
                                     target="_blank" class="btn btn-success">
 									
-							<!-- <input type="button" class='DTTT_button btn btn-info pdfAttendance'value="Pdf "><i class="fa fa-file-pdf-o"></i> -->
+							 <input type="button" class='DTTT_button btn btn-info pdfAttendance'value="Pdf "><i class="fa fa-file-pdf-o"></i> 
                             </div>
                             
 							</div>
