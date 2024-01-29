@@ -72,12 +72,12 @@
 												<table class="table table-bordered" id="DataTable" width="100%">
 													<thead>
 														<tr>
-															<th width="8%">#</th>
-															<th width="30%">Shift Name</th>
-															<th width="30%">Shift In Time</th>
-															<th width="30%">Shift Out Time</th>
-															<th width="20%">Status</th>
-															<th width="12%">Action</th>
+															<th width="5%">#</th>
+															<th width="25%">Shift Name</th>
+															<th width="10%">Shift In Time</th>
+															<th width="10%">Shift Out Time</th>
+															<th width="10%">Status</th>
+															<th width="10%">Action</th>
 														</tr>
 													</thead>
 

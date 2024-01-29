@@ -129,6 +129,13 @@
 					<p>Employee Performance </p>
                 </a>
             </li>
+
+			<li class="nav-item">
+               <a href="<?= base_url().'shift_timing_master' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Shift Timing Master </p>
+                </a>
+              </li>
 			
 			
 		</ul>
