@@ -143,16 +143,15 @@ class AttendanceMaster extends CI_Controller
 			
 			$attend_status = ($member->attend_status=="Present")?'<span class="badge badge-success">'.$member->attend_status.'</span>':'<span class="badge badge-danger">'.$member->attend_status.'</span>';
 			if(!empty($_POST['emp_id'])){
-				$data[] = array($i, $member->attend_date, $member->attend_shift, $member->attend_in_time, $member->attend_out_time, $member->attend_over_time, $member->attend_total_hours, $attend_status);
+				$data[] = array($i, $member->attend_date, $member->attend_shift, $member->attend_in_time, $member->designation_name,$member->attend_out_time, $member->attend_over_time, $member->attend_total_hours, $attend_status);
 			}else{
 				$emp_details = "<b>Code : </b>".$member->attend_emp_id."<br/>";
 				$emp_details.= "<b>Name : </b>".$member->employeename."<br/>";
-				$emp_details.= "<b>Designation : </b>".$member->designation_name;
 				
 				$time_details = "<b>In Time : </b>". $member->attend_in_time."<br/>";
 				$time_details.= "<b>Out Time : </b>". $member->attend_out_time;
 			
-				$data[] = array($i, $member->attend_date, $emp_details, $member->attend_shift, $time_details, $member->attend_work_hours, $member->attend_over_time, $member->attend_total_hours, $attend_status);
+				$data[] = array($i, $member->attend_date, $emp_details,$member->designation_name, $member->attend_shift, $time_details, $member->attend_work_hours, $member->attend_over_time, $member->attend_total_hours, $attend_status);
 			}
 		}
 		$output = array(
@@ -178,12 +177,11 @@ class AttendanceMaster extends CI_Controller
 			
 			$emp_details = "<b>Code : </b>".$member->attend_emp_id."<br/>";
 			$emp_details.= "<b>Name : </b>".$member->employeename."<br/>";
-			$emp_details.= "<b>Designation : </b>".$member->designation_name;
 			
 			$time_details = "<b>In Time : </b>". $member->attend_in_time."<br/>";
 			$time_details.= "<b>Out Time : </b>". $member->attend_out_time;
 		
-			$data[] = array($input_chk, $member->attend_date, $emp_details, $member->attend_shift, $time_details, $member->attend_work_hours, $member->attend_over_time, $member->attend_total_hours, $attend_status);
+			$data[] = array($input_chk, $member->attend_date, $emp_details,$member->designation_name, $member->attend_shift, $time_details, $member->attend_work_hours, $member->attend_over_time, $member->attend_total_hours, $attend_status);
 		}
 		$output = array(
 			"draw" 				=> $_POST['draw'],

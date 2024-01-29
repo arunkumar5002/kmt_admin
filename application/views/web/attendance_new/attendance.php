@@ -1,8 +1,6 @@
 <?php echo load_datatables(); ?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
-
-
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
@@ -22,28 +20,21 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
-                        <div class="row">
-
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="row" style="align-items: center;margin:30px 25px 30px 19px">
+                            <div class="col-md-6 col-sm-4 col-xs-4">
                                 <input type="text" value="<?php echo $month; ?>" placeholder="Attendance Month"
                                     id="attendance_month" name="attendance_month" class="datepicker form-control"
-                                    style="margin-top: 29px;" required>
-                                <br>
+                                     required>
+                                
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="col-md-6 col-sm-3 col-xs-3" style="text-align:end;">
+							<input type="button" onclick="printDiv('printableArea')" value="Print Attendance" rel="noopener"
+                                    target="_blank" class="btn btn-success">
+									
+							<!-- <input type="button" class='DTTT_button btn btn-info pdfAttendance'value="Pdf "><i class="fa fa-file-pdf-o"></i> -->
                             </div>
-                            <div class="row" style="margin-bottom:10px">
-                                <input type="button" onclick="printDiv('printableArea')" value="Print" rel="noopener"
-                                    target="_blank" class="btn btn-default " style="margin-left: 33px;">
-                            </div>
-                            <div class="row" style="margin-bottom:10px">
-                                <input type="button" class='DTTT_button btn btn-default pdfAttendance'
-                                    style='    margin-left: 25px;padding:5px 10px 5px 10px;cursor:pointer' href='#'
-                                    value="Pdf "><i class="fa fa-file-pdf-o"></i>
-                            </div>
+                            
+							</div>
 
                             <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -172,15 +163,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <table id="color_indictaion" class="table table-striped responsive-utilities">
-                                    <tr>
-                                        <td  class="present" style="padding-bottom:10px;color:#000;" align="center" > <i style=" font-size: 18px;color: #1dd323;" class="fas fa-check" ></i> Present</td>
-                                        <td  class="leave" style="padding-bottom:10px;color:#000;" align="center"> <i style=" font-size: 18px;color: #c7341a;" class="fas fa-times"> </i> Absent</td>
-                                        <td  class="empty" style="padding-bottom:10px;color:#000;" align="center"><i style=" font-size: 18px;color: #c7341a;" class="fad fa-window-minimize"></i>  No record</td>
-                                        
-                                    </tr>   
-                                   </table> -->
-
+                                            
                                             <div class="container-fluid">
                                                 <div class="table-responsive" style="overflow-x:auto">
                                                     <table id="example"
@@ -193,7 +176,8 @@
                                                                         <?php echo $i; ?>
                                                                     </td>
                                                                 <?php } ?>
-                                                            </tr>
+		<th> Present </th>													
+		<th> Absent </th>	                                                  </tr>
                                                             <tr class="headings">
                                                                 <td colspan="2" style=" font-size: 13px;"
                                                                     class="sticky__item">Day</td>
@@ -206,13 +190,19 @@
                                                                     </td>
                                                                 <?php } ?>
                                                             </tr>
-                                                        </thead>
+														
+	                                                 </thead>
 
                                                         <tbody>
-                                                            <?php $i = 1;
+  <?php
+$presentTotal = 0;
+$absentTotal = 0;
+?>
+<?php $i = 1;
                                                             if ($employee) {
-                                                                foreach ($employee as $emp) { ?>
-                                                                    <tr>
+                                                                foreach ($employee as $emp) {													              $presentTotal = 0;
+     $absentTotal = 0;
+?>                                                          <tr>
                                                                         <td style=" font-size: 13px;" class="sticky__item">
                                                                             <?php echo $i; ?>
                                                                         </td>
@@ -221,7 +211,7 @@
                                                                             <?php echo $emp->employeename; ?>
                                                                         </td>
                                                                         <?php for ($j = 1; $j <= $days; $j++) {
-                                                                            $day = $j;
+																			                                                     $day = $j;
 
                                                                             $monthName = date('M', mktime(0, 0, 0, $mon, 10));
 
@@ -238,14 +228,13 @@
                                                                                 if ($get_emp_attendance->attend_status == 'Present' || $get_emp_attendance->attend_status == 'WeeklyOff Present') {
                                                                                     $class = "Present";
                                                                                     $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" ></i>';
-                                                                                } else if ($get_emp_attendance->attend_status == 'Absent') {
+                        $presentTotal++;
+  } else if ($get_emp_attendance->attend_status == 'Absent') {
                                                                                     $class = "Absent";
-                                                                                    $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>
-														 ';
-                                                                                } else if ($get_emp_attendance->attend_status == '½Present') {
-
-
-                                                                                    if ($get_emp_attendance->attend_in_time >= '12:00') {
+                                                                                    $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>';
+                       $absentTotal++;                                     } else if ($get_emp_attendance->attend_status == '½Present') {
+                                                     
+													 if ($get_emp_attendance->attend_in_time >= '12:00') {
                                                                                         $class = "attend_in_time";
                                                                                         $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i>';
                                                                                     } else if ($get_emp_attendance->attend_in_time <= '12:00') {
@@ -260,10 +249,11 @@
                                                                                 echo '<td style=" font-size: 10px; min-width:35px!important;">-</td>';
                                                                             }
                                                                             //}  } else{ echo "<td>-</td>";  }
-                                                                
-                                                                        } ?>
-
-                                                                    </tr>
+                                                                          } 
+																		?>
+                <td><?php echo $presentTotal; ?> Days</td>
+                <td><?php echo $absentTotal; ?> Days</td>
+                                                         </tr>
                                                                     <?php $i++;
                                                                 }
                                                             } ?>

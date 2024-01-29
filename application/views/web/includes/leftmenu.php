@@ -46,34 +46,29 @@
 						</a>
 					</li>
 
-
-	<?php
-		$val = get_role_permission_list(1);
-		if(!empty($val)){
-	?>
-	<li class="nav-item">
+	 <li class="nav-item">
 		<a href="#" class="nav-link">
-			<i class="fas fa-users"></i>
+			<i class="fi fi-br-hr"></i>
 			<p>HR</p>
 			<i class="right fas fa-angle-left"></i>
 		</a>
-		
+		<ul class="nav nav-treeview">
             <li class="nav-item">
                 <a href="<?= base_url().'employee_master' ?>" class="nav-link ">
-					<i class="far fa-user nav-icon"></i>
+					<i class="fas fa-users"></i>
 					<p>Employee Master</p>
                 </a>
             </li>
 			
             <li class="nav-item">
                 <a href="<?= base_url().'attendance' ?>" class="nav-link">
-					<i class="far fa-user nav-icon"></i>
-					<p>Attendance Master</p>
+					<i class="fas fa-clipboard"></i>
+					 <p>Attendance Master</p>
                 </a>
             </li>
 			<li class="nav-item">
 				<a href="<?= base_url().'view_attendance_report' ?>" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+					<i class="fas fa-book-open"></i>
 					<p> Attendance List</p>
 				</a>
 			</li>
@@ -88,7 +83,7 @@
 			
 			<li class="nav-item">
 				<a href="<?php echo base_url() ?>Hr/payslip_generator" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+					<i class="fas fa-money-check-alt"></i>
 					<p>Payslip Generator</p>
 				</a>
 			</li>
@@ -100,13 +95,13 @@
 			</li> -->
 			<li class="nav-item">
 				<a href="<?php echo base_url() ?>Hr/salary_slip" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+				<i class="fi fi-rr-rectangle-list"></i>
 					<p>Salary Slip </p>
 				</a>
 			</li>
 			<li class="nav-item">
 				<a href="<?php echo base_url() ?>Hr/pay_rol" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+					<i class="fas fa-money-check"></i>
 					<p> Payroll </p>
 				</a>
 			</li>
@@ -130,20 +125,61 @@
             </li>-->
 			<li class="nav-item">
                <a href="<?php echo base_url() ?>Perfomance/employee_perform_list" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
+					<i class="fas fa-chart-line"></i>
 					<p>Employee Performance </p>
                 </a>
             </li>
 			
-			<li class="nav-item">
+			
+		</ul>
+	</li>
+	
+	
+	<li class="nav-item">
+							<a href="" class="nav-link">
+								<i class="far fa-calendar-alt"></i>
+								<p>Leave Management</p>
+								<i class="right fas fa-angle-left"></i>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?= base_url() . 'leave_approve_master' ?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p> Leave Approval</p>
+									</a>
+								</li>
+
+								<li class="nav-item">
+									<a href="<?= base_url() . 'leave_request_master' ?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Leave Request</p>
+									</a>
+								</li>
+								
+								<li class="nav-item">
                <a href="<?php echo base_url() ?>Hr/holidays" class="nav-link">
 					<i class="far fa-circle nav-icon"></i>
 					<p> Holidays  </p>
                 </a>
             </li>
-		
-	</li>
-	<?php } ?>
+
+								<!--<li class="nav-item">
+									<a href="<?php echo base_url() ?>LeaveRequestMaster/leave_settings" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Leave Settings</p>
+									</a>
+								</li> -->
+
+								<!-- <li class="nav-item">
+									<a href="<?= base_url() . 'leave_setting' ?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Holidays Settings</p>
+									</a>
+								</li> -->
+ 
+							</ul>
+						</li>
+	
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

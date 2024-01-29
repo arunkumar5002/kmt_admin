@@ -3,8 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Attendance extends CI_Controller
 {
-
- 
 	public function attendance_master($month = ''){
 		if($month)
 			$data['month'] = $month;
@@ -19,8 +17,6 @@ class Attendance extends CI_Controller
 		$data['employee'] = $this->common_model->get_records('employee','*');			
 		$this->load->view('web/template',$data);	
 	}
-	
-	
 	
 	public function pdfAttendance($year,$mon){
 		

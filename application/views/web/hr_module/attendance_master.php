@@ -90,6 +90,7 @@
 															<th width="5%">#</th>
 															<th width="15%">Date</th>
 															<th width="20%">Employee Details</th>
+															<th width="20%">Employee Designation</th>
 															<th width="7%">Shift</th>
 															<th width="17%">Time Details</th>
 															<th width="9%">Worked Duration</th>
@@ -155,6 +156,7 @@
 																<th width="5%">#</th>
 																<th width="10%">Date</th>
 																<th width="20%">Employee Details</th>
+																<th width="20%">Employee Designation</th>
 																<th width="10%">Shift</th>
 																<th width="20%">Time Details</th>
 																<th width="10%">Worked Duration</th>
