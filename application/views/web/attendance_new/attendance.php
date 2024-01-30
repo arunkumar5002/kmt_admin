@@ -208,6 +208,8 @@
                                                         foreach ($employee as $emp) {
                                                             /* $presentTotal = 0;*/
                                                             $absentTotal = 0;
+															
+$halfabsenttotalarray = array();															$absenttotalarray = array();
                                                             $halfabsentTotal = 0;
                                                             ?>
                                                             <tr>
@@ -224,6 +226,9 @@
                                                                     $monthName = date('M', mktime(0, 0, 0, $mon, 10));
 
                                                                     $attend_month_year = sprintf("%02d", $day) . "-" . $monthName . "-" . $year;
+																	$attend_month_array = sprintf("%02d", $day) . "-" . sprintf("%02d", $month) . "-" . $year;
+																																$attend_month_arrays = sprintf("%02d", $day) . "-" . sprintf("%02d", $month) . "-" . $year;
+
 
                                                                     $get_emp_attendance = get_emp_attendance($emp->emp_id, $attend_month_year);
 
@@ -241,7 +246,8 @@
                                                                             $class = "Absent";
                                                                             $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>';
                                                                             $absentTotal++;
-                                                                        } else if ($get_emp_attendance->attend_status == '½Present') {
+																			$absenttotalarray[]= $attend_month_array++;
+						                                                 } else if ($get_emp_attendance->attend_status == '½Present') {
 
                                                                             if ($get_emp_attendance->attend_in_time >= '12:00') {
                                                                                 $class = "attend_in_time";
@@ -251,6 +257,7 @@
                                                                                 $value = '<i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" </i></br><i class="far fa-horizontal-rule"></i><i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" </i>';
                                                                             }
                                                                             $halfabsentTotal++;
+																			$halfabsenttotalarray[]= $attend_month_arrays++;
 
                                                                         }
                                                                         echo "<td class='" . $class . "'>" . $value . "</td>";
@@ -264,13 +271,14 @@
                                                                        <?php echo $presentTotal; ?> Days
                                                                     </td> -->
                                                                 <td class="text-center">
-                                                                    <a href="" type="button" 
-                                                data-toggle="modal" data-target="#exampleModal">
-                                                                        <?php echo $absentTotal + $halfabsentTotal; ?>
-                                                                    </a>
-                                                                </td>
+                                                               <a href="#" class="absent-details-link" 
+           data-absent-total="<?php echo $absentTotal; ?>" 
+           data-half-absent-total="<?php echo $halfabsentTotal; ?>" data-absent-array="<?php echo implode(',',$absenttotalarray);?>"
+           data-toggle="modal" data-half-absent-array="<?php echo implode(',',$halfabsenttotalarray);?>" data-target="#exampleModal">
+            <?php echo $absentTotal + $halfabsentTotal; ?>
+        </a>                                                  </td>
                                                             </tr>
-                                                            <?php $i++;
+                                                        <?php $i++;
                                                         }
                                                     } ?>
                                                 </tbody>
@@ -296,12 +304,52 @@
 </div>
 </section>
 
+<!-- Leave modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Absent Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="absentDetailsContainer" style="display:grid">
+                <!-- Absent details will be dynamically inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        
+        $('.absent-details-link').on('click', function(e) {
+            e.preventDefault(); 
+            
+            var absentTotal = $(this).data('absent-total'); 
+            var halfAbsentTotal = $(this).data('half-absent-total'); 
+			var absenttotalarray = $(this).data('absent-array'); 
+			var halfabsenttotalarray = $(this).data('half-absent-array');
+            
+            var absentDetailsHTML = '<label for="">Total Absent   :</label> ' + absentTotal + '<br>' +'<label for="">Absent Date:</label> ' + absenttotalarray + '<br>' +'<label for="">Total Half Absent:</label> ' + halfAbsentTotal +'<br>' +'<label for="">Total Half Absent Date:</label>' + halfabsenttotalarray;
+
+            $('#absentDetailsContainer').html(absentDetailsHTML); 
+            $('#exampleModal').modal('show'); 
+        });
+    });
+</script>
+
+
 
 <style>
     .ui-datepicker-calendar {
         display: none;
     }
-</style> <!-- Datatables -->
+</style> 
 <script>
     var myModal = document.getElementById('exampleModal')
     var myInput = document.getElementById('myInput')
@@ -372,36 +420,3 @@
     }
 </script>
 
-
-<!-- Leave modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="exampleModalLabel">Absent Details</h4>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div>
-                                                            <label for="">Total Absents</label>
-                                                            <p>12/02/2024</p>
-                                                            </div>
-                                                            <div>
-                                                            <label for="">Half A Day Absents</label>
-                                                            <p class="mb-0">12/02/2024 </p>
-                                                            <p class="mb-0 " style="font-weight:800;">Morning : <span><i style=" font-size: 10px;color: #1dd323;" class="fas fa-check" ></i></span></p>
-                                                            <p class="mb-0" style="font-weight:800;">Afternoon : <span><i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i></span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                           
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
