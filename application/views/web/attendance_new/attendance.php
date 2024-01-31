@@ -246,6 +246,7 @@ $halfabsenttotalarray = array();															$absenttotalarray = array();
                                                                             $class = "Absent";
                                                                             $value = '<i style=" font-size: 10px;color: #c7341a;" class="fas fa-times" ></i>';
                                                                             $absentTotal++;
+															
 																			$absenttotalarray[]= $attend_month_array++;
 						                                                 } else if ($get_emp_attendance->attend_status == '½Present') {
 
@@ -273,8 +274,21 @@ $halfabsenttotalarray = array();															$absenttotalarray = array();
                                                                 <td class="text-center">
                                                                <a href="#" class="absent-details-link" 
            data-absent-total="<?php echo $absentTotal; ?>" 
-           data-half-absent-total="<?php echo $halfabsentTotal; ?>" data-absent-array="<?php echo implode(',',$absenttotalarray);?>"
-           data-toggle="modal" data-half-absent-array="<?php echo implode(',',$halfabsenttotalarray);?>" data-target="#exampleModal">
+           data-half-absent-total="<?php echo $halfabsentTotal; ?>" data-absent-array="<?php
+$absentDetails = "";
+foreach ($absenttotalarray as $date) {
+    $absentDetails .= "Full day - " . $date . "<br>";
+}
+echo $absentDetails;
+?>
+"
+           data-toggle="modal"
+		   data-half-absent-array="<?php $halfabsentDetails = "";
+foreach ($halfabsenttotalarray as $date) {
+    $halfabsentDetails .= "Half a day - " . $date . "<br>";
+}
+echo $halfabsentDetails; 
+?>" data-target="#exampleModal">
             <?php echo $absentTotal + $halfabsentTotal; ?>
         </a>                                                  </td>
                                                             </tr>
@@ -314,7 +328,8 @@ $halfabsenttotalarray = array();															$absenttotalarray = array();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="absentDetailsContainer" style="display:grid">
+            <div class="modal-body" id="absentDetailsContainer" style="display: flex;
+    justify-content: space-evenly;margin-right: 55px;">
                 <!-- Absent details will be dynamically inserted here -->
             </div>
             <div class="modal-footer">
@@ -335,7 +350,9 @@ $halfabsenttotalarray = array();															$absenttotalarray = array();
 			var absenttotalarray = $(this).data('absent-array'); 
 			var halfabsenttotalarray = $(this).data('half-absent-array');
             
-            var absentDetailsHTML = '<label for="">Total Absent   :</label> ' + absentTotal + '<br>' +'<label for="">Absent Date:</label> ' + absenttotalarray + '<br>' +'<label for="">Total Half Absent:</label> ' + halfAbsentTotal +'<br>' +'<label for="">Total Half Absent Date:</label>' + halfabsenttotalarray;
+            var absentDetailsHTML = '<div></div>' + absenttotalarray + '<br>' +'<div></div>' + halfabsenttotalarray;
+			
+			//var absentDetailsHTML = absenttotalarray +'<br>'+  halfabsenttotalarray ;
 
             $('#absentDetailsContainer').html(absentDetailsHTML); 
             $('#exampleModal').modal('show'); 
