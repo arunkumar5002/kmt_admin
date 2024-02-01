@@ -638,12 +638,12 @@ class Company extends CI_Controller
 	
 
 
-	public function vat_master()
+	public function gst_master()
 	{
 
-		$data['vat_master'] = 'menu';
+		$data['gst_master'] = 'menu';
 
-		$data['content'] = "web/vatmaster/vat_master";
+		$data['content'] = "web/vatmaster/gst_master";
 
 		$this->load->view('web/template', $data);
 	}

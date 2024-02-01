@@ -3,7 +3,7 @@
 class Hr_model extends CI_Model
 {
 
-	public function save_employee($emp_id, $employeename, $contract_type, $employee_status, $department, $designation, $mobile, $emergency_number, $email, $birthdate, $gender, $employedDate, $address, $spousename, $image, $passport_name, $passport_number, $passport_issue_date, $passport_expiry_date, $passport_issue_place, $passport_file, $rp_number, $rp_issue_date, $rp_expiry_date, $rp_file, $crp_name, $crp_number, $crp_issue_date, $crp_expiry_date, $bank_account_name, $bank_iban, $bank_swift_code,$basic_salary,$other_allowance,$sio,$lmra_fee)
+	public function save_employee($emp_id, $employeename, $contract_type, $employee_status, $department, $designation, $mobile, $emergency_number, $email, $birthdate, $gender, $employedDate, $address, $spousename,$image, $passport_name, $passport_number, $passport_issue_date, $passport_expiry_date, $passport_issue_place, $passport_file,$bank_account_name, $ifsc_code,$account_number,$bank_name,$bank_swift_code,$basic_salary,$other_allowance,$sio,$lmra_fee)
 	{
 
 
@@ -12,7 +12,7 @@ class Hr_model extends CI_Model
 		//exit;
 
 
-		$sql = "INSERT INTO employee(emp_id,employeename,contract_type,employee_status,department,designation,mobile,emergency_number,email,birthdate,gender,employedDate,address,spousename,image,passport_name,passport_number,passport_issue_date,passport_expiry_date,passport_issue_place,passport_file,rp_number,rp_issue_date,rp_expiry_date,rp_file,crp_name,crp_number,crp_issue_date,crp_expiry_date,bank_account_name,bank_iban,bank_swift_code,basic_salary,other_allowance,sio,lmra_fee) values('$emp_id','$employeename','$contract_type','$employee_status','$department','$designation','$mobile','$emergency_number','$email','$birthdate','$gender','$employedDate','$address','$spousename','$image','$passport_name','$passport_number','$passport_issue_date','$passport_expiry_date','$passport_issue_place','$passport_file','$rp_number','$rp_issue_date','$rp_expiry_date','$rp_file','$crp_name','$crp_number','$crp_issue_date','$crp_expiry_date','$bank_account_name','$bank_iban','$bank_swift_code','$basic_salary','$other_allowance','$sio','$lmra_fee')";
+		$sql = "INSERT INTO employee(emp_id,employeename,contract_type,employee_status,department,designation,mobile,emergency_number,email,birthdate,gender,employedDate,address,spousename,image,passport_name,passport_number,passport_issue_date,passport_expiry_date,passport_issue_place,passport_file,bank_account_name,ifsc_code,account_number,bank_name,bank_swift_code,basic_salary,other_allowance,sio,lmra_fee) values('$emp_id','$employeename','$contract_type','$employee_status','$department','$designation','$mobile','$emergency_number','$email','$birthdate','$gender','$employedDate','$address','$spousename','$image','$passport_name','$passport_number','$passport_issue_date','$passport_expiry_date','$passport_issue_place','$passport_file','$bank_account_name','$ifsc_code','$account_number','$bank_name','$bank_swift_code','$basic_salary','$other_allowance','$sio','$lmra_fee')";
 
 
 		$result = $this->db->query($sql);
@@ -119,16 +119,13 @@ class Hr_model extends CI_Model
 	}
 
 
-	public function update_employee($emp_id, $employeename, $contract_type, $employee_status, $department, $designation, $mobile, $emergency_number, $email, $birthdate, $gender, $employedDate, $address, $spousename, $source, $passport_name, $passport_number, $passport_issue_date, $passport_expiry_date, $passport_issue_place, $passport_file, $rp_number, $rp_issue_date, $rp_expiry_date, $rp_file, $crp_name, $crp_number, $crp_issue_date, $crp_expiry_date, $bank_account_name, $bank_iban, $bank_swift_code,$basic_salary,$other_allowance,$sio,$lmra_fee, $employee_id)
+	public function update_employee($emp_id, $employeename, $contract_type, $employee_status, $department, $designation, $mobile, $emergency_number, $email, $birthdate, $gender, $employedDate, $address, $spousename, $source, $passport_name, $passport_number, $passport_issue_date, $passport_expiry_date, $passport_issue_place, $passport_file,$bank_account_name, $ifsc_code,$account_number,$bank_name, $bank_swift_code,$basic_salary,$other_allowance,$sio,$lmra_fee, $employee_id)
 	{
 	
     
 		 
 		$sql = "update employee SET emp_id = '$emp_id', employeename = '$employeename' , contract_type ='$contract_type',employee_status = '$employee_status' ,department = '$department',designation = '$designation' , mobile = '$mobile',emergency_number = '$emergency_number' ,email = '$email' ,birthdate = '$birthdate',gender = '$gender' ,employedDate = '$employedDate' , address = '$address' , spousename = '$spousename',passport_name = '$passport_name',passport_number = '$passport_number' ,passport_issue_date = '$passport_issue_date',passport_expiry_date = '$passport_expiry_date' , passport_issue_place = '$passport_issue_place
-',rp_number = '$rp_number' , rp_issue_date = '$rp_issue_date
-',rp_expiry_date = '$rp_expiry_date' , crp_name = '$crp_name', crp_number = '
-$crp_number' , crp_issue_date = '$crp_issue_date',crp_expiry_date = '$crp_expiry_date
-',bank_account_name = '$bank_account_name',bank_iban = '$bank_iban',bank_swift_code = '
+',bank_account_name = '$bank_account_name',ifsc_code = '$ifsc_code',account_number = '$account_number' , bank_name = '$bank_name',bank_swift_code = '
 $bank_swift_code' ,basic_salary = '$basic_salary' ,other_allowance = '$other_allowance' , sio = '$sio' , lmra_fee = '$lmra_fee'  where employee_id = '$employee_id'";
 
 

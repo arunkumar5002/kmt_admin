@@ -234,108 +234,14 @@ class EmployeeMaster extends CI_Controller
 		echo json_encode($output);
 	}
 	
-	public function update_resident_details(){
-		$row_id		= $this->input->post('resident_row_id');
-		
-		$issue_date 	= (!empty($this->input->post('rp_issue_date')))?date('Y-m-d',strtotime($this->input->post('rp_issue_date'))):'';
-		$expiry_date 	= (!empty($this->input->post('rp_expiry_date')))?date('Y-m-d',strtotime($this->input->post('rp_expiry_date'))):'';
-		$data_arr 		= array(
-			'rp_number' 		=> $this->input->post('rp_number'),
-			'rp_issue_date' 	=> $issue_date,
-			'rp_expiry_date' 	=> $expiry_date,
-		);
-		
-		$test_con 	 = 0;
-		$small_image = "";
-		if(isset($_FILES["rp_file"]["name"]) && !empty($_FILES["rp_file"]["name"])){
-    		$image_info = getimagesize($_FILES["rp_file"]["tmp_name"]);
-    		$image_width = $image_info[0];
-    		$image_height = $image_info[1];
-    		$imageData1['imageName']='rp_file';
-    		$imageData1['imageWidth']=$image_width;
-    		$imageData1['imageHeight']=$image_height;
-    		$imageData1['prefWidth']=$image_width;
-		    $imageData1['prefHeight']=$image_height;
-    		$extension = pathinfo($_FILES["rp_file"]["name"], PATHINFO_EXTENSION);
-    		$filename = pathinfo($_FILES['rp_file']['name'], PATHINFO_FILENAME);
-    		
-    		$config['upload_path']    = EMPLOYEE_PR_FILE_IMG_PATH;
-    		$config['allowed_types']  = 'jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP';
-    		$config['file_name']      = $filename.rand() . '_' . date('YmdHis') . "." . $extension;	
-    		$this->load->library('upload', $config);
-    		if(!$this->upload->do_upload('rp_file')){
-    			$test_con   = 1;
-    			$error      = $this->upload->display_errors();
-    		}else{
-    			$data           = array('upload_data' => $this->upload->data());
-    			$test_con       = 0;
-    			$data_arr['rp_file']    = $data['upload_data']['file_name'];
-    		}
-        }
-		
-		if($test_con==0){
-			if(empty($row_id)){
-				$output = array(
-					'status'	=> 'Error',
-					'msg'		=> 'Please Complete Employee Details',
-				);
-			}else{
-				$data_arr['updated_at'] = date('Y-m-d h:i:s');
-				$data_arr['updated_by'] = $this->session->userdata('user_id');
-				
-				$where = "employee_id='$row_id'";
-				$this->common_model->update('employee',$data_arr,$where);
-				$output = array(
-					'status'	=> 'Success',
-					'msg'		=> 'Resident Permit Details Updated Successfully',
-				);
-			}
-		}else{
-			$output = array(
-				'status'	=> 'Error',
-				'msg'		=> $error,
-			);
-		}
-		echo json_encode($output);
-	}
-	
-	public function update_cpr_details(){
-		$row_id		= $this->input->post('cpr_row_id');
-		
-		$issue_date 	= (!empty($this->input->post('crp_issue_date')))?date('Y-m-d',strtotime($this->input->post('crp_issue_date'))):'';
-		$expiry_date 	= (!empty($this->input->post('crp_expiry_date')))?date('Y-m-d',strtotime($this->input->post('crp_expiry_date'))):'';
-		$data_arr 		= array(
-			'crp_name' 			=> $this->input->post('crp_name'),
-			'crp_number' 		=> $this->input->post('crp_number'),
-			'crp_issue_date' 	=> $issue_date,
-			'crp_expiry_date' 	=> $expiry_date,
-		);
-		if(empty($row_id)){
-			$output = array(
-				'status'	=> 'Error',
-				'msg'		=> 'Please Complete Employee Details',
-			);
-		}else{
-			$data_arr['updated_at'] = date('Y-m-d h:i:s');
-			$data_arr['updated_by'] = $this->session->userdata('user_id');
-			
-			$where = "employee_id='$row_id'";
-			$this->common_model->update('employee',$data_arr,$where);
-			$output = array(
-				'status'	=> 'Success',
-				'msg'		=> 'CRP Details Updated Successfully',
-			);
-		}
-		echo json_encode($output);
-	}
-	
 	public function update_bank_details(){
 		$row_id		= $this->input->post('bank_row_id');
 		
 		$data_arr 		= array(
 			'bank_account_name' 	=> $this->input->post('bank_account_name'),
-			'bank_iban' 			=> $this->input->post('bank_iban'),
-			'bank_swift_code' 		=> $this->input->post('bank_swift_code'),
+			'ifsc_code' 			=> $this->input->post('ifsc_code'),
+			'account_number' 		=> $this->input->post('account_number'),
+			'bank_name' 		=> $this->input->post('bank_name'),
 		);
 		if(empty($row_id)){
 			$output = array(
@@ -521,15 +427,6 @@ class EmployeeMaster extends CI_Controller
 						
 						$passport_expiry_date = PHPExcel_Style_NumberFormat::toFormattedString($worksheet->getCellByColumnAndRow(20, $row)->getValue(), 'Y-m-d');
 						
-						$rp_issue_date = PHPExcel_Style_NumberFormat::toFormattedString($worksheet->getCellByColumnAndRow(23, $row)->getValue(), 'Y-m-d');
-						
-						$rp_expiry_date = PHPExcel_Style_NumberFormat::toFormattedString($worksheet->getCellByColumnAndRow(24, $row)->getValue(), 'Y-m-d');
-						
-						$crp_issue_date = PHPExcel_Style_NumberFormat::toFormattedString($worksheet->getCellByColumnAndRow(27, $row)->getValue(), 'Y-m-d');
-						
-						$crp_expiry_date = PHPExcel_Style_NumberFormat::toFormattedString($worksheet->getCellByColumnAndRow(28, $row)->getValue(), 'Y-m-d');
-						
-
 								$data_arr = array(
 									'emp_id'			=>	trim($worksheet->getCellByColumnAndRow(1, $row)->getValue()),
 									'employeename'		=>	trim($worksheet->getCellByColumnAndRow(2, $row)->getValue()),
@@ -551,16 +448,9 @@ class EmployeeMaster extends CI_Controller
 									'passport_number'		=>	trim($worksheet->getCellByColumnAndRow(18, $row)->getValue()),
 									'passport_issue_date'	=>	trim($passport_issue_date),
 									'passport_expiry_date'			=>	trim($passport_expiry_date),
-									'passport_issue_place'		=>	trim($worksheet->getCellByColumnAndRow(21, $row)->getValue()),
-									'rp_number'			=>	trim($worksheet->getCellByColumnAndRow(22, $row)->getValue()),
-									'rp_issue_date'		=>	trim($rp_issue_date),
-									'rp_expiry_date'		=>	trim($rp_expiry_date),
-									'crp_name'		=>	trim($worksheet->getCellByColumnAndRow(25, $row)->getValue()),
-									'crp_number'		=>	trim($worksheet->getCellByColumnAndRow(26, $row)->getValue()),
-									'crp_issue_date'	=>	trim($crp_issue_date),
-									'crp_expiry_date'			=>	trim($crp_expiry_date),
+									'passport_issue_place'		=>	trim($worksheet->getCellByColumnAndRow(21, $row)->getValue()),	
 									'bank_account_name'			=>	trim($worksheet->getCellByColumnAndRow(29, $row)->getValue()),
-									'bank_iban'		=>	trim($worksheet->getCellByColumnAndRow(30, $row)->getValue()),
+									'ifsc_code'		=>	trim($worksheet->getCellByColumnAndRow(30, $row)->getValue()),
 									'bank_swift_code'		=>	trim($worksheet->getCellByColumnAndRow(31, $row)->getValue()),
 									'basic_salary'	=>	trim($worksheet->getCellByColumnAndRow(32, $row)->getValue()),
 									'other_allowance'			=>	trim($worksheet->getCellByColumnAndRow(33, $row)->getValue()),

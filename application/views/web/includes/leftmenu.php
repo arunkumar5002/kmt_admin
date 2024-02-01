@@ -1,6 +1,5 @@
 <?php $menu_user_id = $this->session->userdata('user_id'); ?>
 
-
 <style>
 	.nav-item .nav-link{
 		display: flex !important;
@@ -45,6 +44,13 @@
 							<p>Dashboard</p>
 						</a>
 					</li>
+					
+					<li class="nav-item">
+						<a href="<?= base_url() . 'settings' ?>" class="nav-link">
+							<i class="fas fa-cogs"></i>
+							<p>Configuration</p>
+						</a>
+					</li>
 
 	 <li class="nav-item">
 		<a href="#" class="nav-link">
@@ -73,26 +79,13 @@
 				</a>
 			</li>
 			
-			
-			<!-- <li class="nav-item">
-				<a href="<?php echo base_url()?>Hr/salary_master" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
-					<p>Salary Master</p>
-				</a>
-			</li> -->
-			
 			<li class="nav-item">
 				<a href="<?php echo base_url() ?>Hr/payslip_generator" class="nav-link">
 					<i class="fas fa-money-check-alt"></i>
 					<p>Payslip Generator</p>
 				</a>
 			</li>
-			<!-- <li class="nav-item">
-				<a href="<?php echo base_url() ?>Hr/levy_master" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
-					<p>Levy Master </p>
-				</a>
-			</li> -->
+			
 			<li class="nav-item">
 				<a href="<?php echo base_url() ?>Hr/salary_slip" class="nav-link">
 				<i class="fi fi-rr-rectangle-list"></i>
@@ -111,18 +104,6 @@
 					<p>Salary Sheet </p>
 				</a>
 			</li>
-			<!--<li class="nav-item">
-				<a href="<?php echo base_url() ?>Hr/leave_category" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
-					<p>Leave category </p>
-				</a>
-			</li>-->
-			<!--<li class="nav-item">
-                <a href="<?php echo base_url() ?>Hr/leave_management_list" class="nav-link">
-					<i class="far fa-circle nav-icon"></i>
-					<p>Leave Management </p>
-                </a>
-            </li>-->
 			<li class="nav-item">
                <a href="<?php echo base_url() ?>Perfomance/employee_perform_list" class="nav-link">
 					<i class="fas fa-chart-line"></i>
@@ -130,14 +111,6 @@
                 </a>
             </li>
 
-			<li class="nav-item">
-               <a href="<?= base_url().'shift_timing_master' ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Shift Timing Master </p>
-                </a>
-              </li>
-			
-			
 		</ul>
 	</li>
 	
@@ -157,7 +130,7 @@
 								</li>
 
 								<li class="nav-item">
-									<a href="<?= base_url() . 'leave_request_master' ?>" class="nav-link">
+									<a href="<?= base_url().'leave_request_master' ?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Leave Request</p>
 									</a>
@@ -169,23 +142,27 @@
 					<p> Holidays  </p>
                 </a>
             </li>
-
-								<!--<li class="nav-item">
-									<a href="<?php echo base_url() ?>LeaveRequestMaster/leave_settings" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Leave Settings</p>
-									</a>
-								</li> -->
-
-								<!-- <li class="nav-item">
-									<a href="<?= base_url() . 'leave_setting' ?>" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Holidays Settings</p>
-									</a>
-								</li> -->
- 
-							</ul>
+						</ul>
 						</li>
+						
+						
+						<li class="nav-item">
+						<a href="" class="nav-link">
+							<i class="fas fa-landmark"></i>
+							<p>Loan Management</p>
+							<i class="right fas fa-angle-left"></i>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="<?= base_url() . 'loan_master' ?>" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Loan Master</p>
+								</a>
+							</li>
+
+
+						</ul>
+					</li>
 	
         </ul>
       </nav>

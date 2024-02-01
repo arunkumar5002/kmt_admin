@@ -23,8 +23,6 @@
 							<ul class="nav nav-pills">
 								<li class="nav-item"><a class="nav-link active" href="#employee_details" id="nav_employee_details" data-toggle="tab">Employee Details</a></li>
 								<li class="nav-item"><a class="nav-link" href="#passport_details" id="nav_passport_details" data-toggle="tab">Passport Details</a></li>
-								<li class="nav-item"><a class="nav-link" href="#resident_permit_details" id="nav_resident_permit_details" data-toggle="tab">Resident Permit Details</a></li>
-								<li class="nav-item"><a class="nav-link" href="#cpr_details" id="nav_cpr_details" data-toggle="tab">CPR Details</a></li>
 								<li class="nav-item"><a class="nav-link" href="#bank_details" id="nav_bank_details" data-toggle="tab">Bank Details</a></li>
 								<li class="nav-item"><a class="nav-link" href="#salary_details" id="nav_salary_details" data-toggle="tab">Salary Details</a></li>
 								<li class="nav-item"><a class="nav-link" href="#certificate_details" id="nav_certificate_details" data-toggle="tab">Certificate Details</a></li>
@@ -276,108 +274,7 @@
 												</div>
 											</div>
 											<div class="col-md-12 text-right">
-												<button class="btn btn-info" onclick="change_nav('passport_details','employee_details');" type="button">Prev</button>
-												<button class="btn btn-success" type="submit">Next</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="tab-pane" id="resident_permit_details">
-									<form id="ResidentForm" autocomplete="OFF">
-										<input type="hidden" name="resident_row_id" id="resident_row_id" value="<?= (!empty($emp_details))?$emp_details->employee_id:'' ?>" />
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label class="form-check-label">RP Number <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm" name="rp_number" required value="<?= (!empty($emp_details))?$emp_details->rp_number:'' ?>" />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<?php
-													$rp_issue_date = "";
-													if((!empty($emp_details)) && (!empty($emp_details->rp_issue_date)) && ($emp_details->rp_issue_date!="0000-00-00")){
-														$rp_issue_date = date('d-m-Y',strtotime($emp_details->rp_issue_date));
-													}
-												?>
-												<div class="form-group">
-													<label class="form-check-label">Date of Issue <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm datepicker" name="rp_issue_date" value="<?= $rp_issue_date ?>" required />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<?php
-													$rp_expiry_date = "";
-													if((!empty($emp_details)) && (!empty($emp_details->rp_expiry_date)) && ($emp_details->rp_expiry_date!="0000-00-00")){
-														$rp_expiry_date = date('d-m-Y',strtotime($emp_details->rp_expiry_date));
-													}
-												?>
-												<div class="form-group">
-													<label class="form-check-label">Date of Expiry <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm datepicker" name="rp_expiry_date" value="<?= $rp_expiry_date ?>" required />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<?php $rp_file = (!empty($emp_details))?$emp_details->rp_file:''; ?>
-												<div class="form-group">
-													<label class="form-check-label">RP Document Image <?php if(empty($rp_file)){ ?><span class="text-required">*</span><?php } ?></label>
-													<input type="file" class="form-control form-control-sm" name="rp_file" id="rp_file" <?php if(empty($rp_file)){ echo 'required'; } ?> />
-												</div>
-												<?php
-													if(!empty($rp_file)){
-														$path = base_url().EMPLOYEE_PR_FILE_IMG_PATH.'/'.$rp_file;
-														echo '<img src="'.$path.'" alt="No Employee Image" width="50%" />';
-													}
-												?>
-											</div>
-											<div class="col-md-12 text-right">
-												<button class="btn btn-info" onclick="change_nav('resident_permit_details','passport_details');" type="button">Prev</button>
-												<button class="btn btn-success" type="submit">Next</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="tab-pane" id="cpr_details">
-									<form id="CprForm" autocomplete="OFF">
-										<input type="hidden" name="cpr_row_id" id="cpr_row_id" value="<?= (!empty($emp_details))?$emp_details->employee_id:'' ?>" />
-										<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label class="form-check-label">Name as per ID <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm" name="crp_name" value="<?= (!empty($emp_details))?$emp_details->crp_name:'' ?>" required />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="form-group">
-													<label class="form-check-label">CRP Number <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm" name="crp_number" value="<?= (!empty($emp_details))?$emp_details->crp_number:'' ?>" required />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<?php
-													$crp_issue_date = "";
-													if((!empty($emp_details)) && (!empty($emp_details->crp_issue_date)) && ($emp_details->crp_issue_date!="0000-00-00")){
-														$crp_issue_date = date('d-m-Y',strtotime($emp_details->crp_issue_date));
-													}
-												?>
-												<div class="form-group">
-													<label class="form-check-label">Date of Issue <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm datepicker" name="crp_issue_date" value="<?= $crp_issue_date ?>" required />
-												</div>
-											</div>
-											<div class="col-md-4">
-												<?php
-													$crp_expiry_date = "";
-													if((!empty($emp_details)) && (!empty($emp_details->crp_expiry_date)) && ($emp_details->crp_expiry_date!="0000-00-00")){
-														$crp_expiry_date = date('d-m-Y',strtotime($emp_details->crp_expiry_date));
-													}
-												?>
-												<div class="form-group">
-													<label class="form-check-label">Date of Expiry <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm datepicker" name="crp_expiry_date" value="<?= $crp_expiry_date ?>" required />
-												</div>
-											</div>
-											<div class="col-md-12 text-right">
-												<button class="btn btn-info" onclick="change_nav('cpr_details','resident_permit_details');" type="button">Prev</button>
+												<button class="btn btn-info" onclick="change_nav('passport_details','bank_details');" type="button">Prev</button>
 												<button class="btn btn-success" type="submit">Next</button>
 											</div>
 										</div>
@@ -395,18 +292,39 @@
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
-													<label class="form-check-label">IBAN Number <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm" name="bank_iban" value="<?= (!empty($emp_details))?$emp_details->bank_iban:'' ?>" required />
+													<label class="form-check-label">Account Number<span class="text-required">*</span></label>
+													<input type="text" class="form-control form-control-sm" name="account_number" value="<?= (!empty($emp_details))?$emp_details->account_number:'' ?>" required />
+												</div>
+											</div>
+											
+											
+											
+											<div class="col-md-4">
+												<?php $bank_name = (!empty($emp_details))?$emp_details->bank_name:''; ?>
+												<div class="form-group">
+													<label class="form-check-label">Banck Name</label>
+													<select class="form-control form-control-sm select2" name="bank_name" id="bank_name">
+														<option value="">-- Select Banck Name --</option>
+														<option <?php if($bank_name=="Indian Bank"){ echo 'selected'; } ?> value="Indian Bank">Indian Bank</option>
+														<option <?php if($bank_name=="City Union Bank"){ echo 'selected'; } ?> value="City Union Bank">City Union Bank</option>													
+														<option <?php if($bank_name=="State Bank Of India (SBI)"){ echo 'selected'; } ?> value="State Bank Of India (SBI)">State Bank Of India (SBI)</option>
+														<option <?php if($bank_name=="Kotak Mahindra Bank"){ echo 'selected'; } ?> value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+														<option <?php if($bank_name=="Axis Bank"){ echo 'selected'; } ?> value="Axis Bank">Axis Bank</option>
+														
+														<option <?php if($bank_name=="Karur Vysya Bank (KVB)"){ echo 'selected'; } ?> value="Karur Vysya Bank (KVB)">Karur Vysya Bank (KVB)</option>
+														<option <?php if($bank_name=="Punjab National Bank (PNB)"){ echo 'selected'; } ?> value="Punjab National Bank (PNB)">Punjab National Bank (PNB)</option>
+														<option <?php if($bank_name=="HDFC Bank"){ echo 'selected'; } ?> value="HDFC Bank">HDFC Bank</option>
+													</select>
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
-													<label class="form-check-label">Swift Code <span class="text-required">*</span></label>
-													<input type="text" class="form-control form-control-sm" name="bank_swift_code" value="<?= (!empty($emp_details))?$emp_details->bank_swift_code:'' ?>" required />
+													<label class="form-check-label">IFSC Code<span class="text-required">*</span></label>
+													<input type="text" class="form-control form-control-sm" name="ifsc_code" value="<?= (!empty($emp_details))?$emp_details->ifsc_code:'' ?>" required />
 												</div>
 											</div>
 											<div class="col-md-12 text-right">
-												<button class="btn btn-info" onclick="change_nav('bank_details','cpr_details');" type="button">Prev</button>
+												<button class="btn btn-info" onclick="change_nav('bank_details','salary_details');" type="button">Prev</button>
 												<button class="btn btn-success" type="submit">Next</button>
 											</div>
 										</div>
@@ -475,13 +393,13 @@
 										</div>
 									</form>
 									<div class="row">
-										<div class="col-md-12 table-responsive">
+										<div class="col-md-12 table-responsive" >
 											<table class="table table-bordered" id="DataTable" width="100%">
 												<thead>
 													<tr>
-														<th>SNo</th>
-														<th>Certificate Name</th>
-														<th>Certificate File Name</th>
+														<th>S.No</th>
+														<th> Name</th>
+														<th> File Name</th>
 														<th>Uploaded At</th>
 														<th>Action</th>
 													</tr>
@@ -610,8 +528,6 @@ $("#EmployeeForm").on('submit',(function(e){
 				
 				$("#employee_row_id").val(data['emp_id']);
 				$("#passport_row_id").val(data['emp_id']);
-				$("#resident_row_id").val(data['emp_id']);
-				$("#cpr_row_id").val(data['emp_id']);
 				$("#bank_row_id").val(data['emp_id']);
 				$("#salary_row_id").val(data['emp_id']);
 				$("#certificate_row_id").val(data['emp_id']);
@@ -643,70 +559,12 @@ $("#PassportForm").on('submit',(function(e){
 			if(data['status']=="Error"){
 				toastr.error(data['msg']);
 			}else{
-				change_nav('passport_details','resident_permit_details');
+				change_nav('passport_details','bank_details');
 				toastr.success(data['msg']);
 			}
 		},
 		complete: function(data) {
 			$("#PassportForm [type='submit']").attr('disabled', false);
-		},
-	});
-}));
-
-$("#ResidentForm").on('submit',(function(e){
-	e.preventDefault();
-	var formData = new FormData($("#ResidentForm")[0]);
-	$.ajax({
-		url: "<?= base_url().'update_resident_details' ?>",
-		type: "POST",
-		data:  formData,
-		dataType: "JSON",
-		contentType: false,
-		cache: false,
-		processData:false,
-		beforeSend: function() {
-			$("#ResidentForm [type='submit']").attr('disabled', true);
-		},
-		success: function(data)
-		{
-			if(data['status']=="Error"){
-				toastr.error(data['msg']);
-			}else{
-				change_nav('resident_permit_details','cpr_details');
-				toastr.success(data['msg']);
-			}
-		},
-		complete: function(data) {
-			$("#ResidentForm [type='submit']").attr('disabled', false);
-		},
-	});
-}));
-
-$("#CprForm").on('submit',(function(e){
-	e.preventDefault();
-	var formData = new FormData($("#CprForm")[0]);
-	$.ajax({
-		url: "<?= base_url().'update_cpr_details' ?>",
-		type: "POST",
-		data:  formData,
-		dataType: "JSON",
-		contentType: false,
-		cache: false,
-		processData:false,
-		beforeSend: function() {
-			$("#CprForm [type='submit']").attr('disabled', true);
-		},
-		success: function(data)
-		{
-			if(data['status']=="Error"){
-				toastr.error(data['msg']);
-			}else{
-				change_nav('cpr_details','bank_details');
-				toastr.success(data['msg']);
-			}
-		},
-		complete: function(data) {
-			$("#CprForm [type='submit']").attr('disabled', false);
 		},
 	});
 }));

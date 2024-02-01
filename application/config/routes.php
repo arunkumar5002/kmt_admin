@@ -177,7 +177,7 @@ $route['delete_Employee_Perform'] 	= "Perfomance/delete_employee_perform";
 
 
 // Company - VAT Master
-$route['vat_master'] 	= "Company/vat_master";
+$route['gst_master'] 	= "Company/gst_master";
 $route['add_edit_vat'] 	= "Company/submit_vat";
 $route['list_vat'] 		= "Company/list_vat";
 $route['delete_vat'] 	= "Company/delete_vat";

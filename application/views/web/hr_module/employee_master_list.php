@@ -28,7 +28,7 @@
 								<div class="col-md-12 col-sm-12 col-12 text-right">
 										<a href="<?= base_url().'add_employee' ?>" class="btn btn-info btn-sm" style="background-color:#5897ED; border-color:#5897ED;"><i class="fa fa-plus"></i> New</a>
 									<button type="button" id="AddBtn" class="btn btn-info btn-sm" style="background-color:#53D769; border-color:#53D769;"><i class="fa fa-upload"></i> Import</button>
-									<button type="button" id="FillerBtn" class="btn btn-info btn-sm" style="background-color:#E7E7E7; border-color:#E7E7E7; color:black;"><i class="fa fa-search"></i> Filter</button>
+									<!-- <button type="button" id="FillerBtn" class="btn btn-info btn-sm" style="background-color:#E7E7E7; border-color:#E7E7E7; color:black;"><i class="fa fa-search"></i> Filter</button> -->
 								</div>
 								<div class="col-md-12 col-sm-12 col-12"><hr/>
 									<div class="table-responsive">

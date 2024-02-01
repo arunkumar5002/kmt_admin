@@ -28,21 +28,10 @@
 	<section class="content-header">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3 col-sm-6 col-12">
-					<a href="<?= base_url().'Company/company_master_list' ?>">
-						<div class="info-box">
-							<span class="info-box-icon bg-info"><i class="far fa-copy"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text">Company Master</span>
-								<!--<span class="info-box-number">5</span>-->
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 col-sm-6 col-12">
+				<div class="col-md-4">
 					<a href="<?= base_url().'department_master' ?>">
 						<div class="info-box">
-							<span class="info-box-icon bg-success"><i class="far fa-copy"></i></span>
+							<span class="info-box-icon bg-success"><i class="far fa-building"></i></span>
 							<div class="info-box-content">
 								<span class="info-box-text">Department Master</span>
 								<!--<span class="info-box-number">2</span>-->
@@ -50,10 +39,10 @@
 						</div>
 					</a>
 				</div>
-				<div class="col-md-3 col-sm-6 col-12">
+				<div class="col-md-4">
 					<a href="<?= base_url().'designation_master' ?>">
 						<div class="info-box">
-							<span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+							<span class="info-box-icon bg-warning"><i class="far fa-building"></i></span>
 							<div class="info-box-content">
 								<span class="info-box-text">Designation Master</span>
 								<!--<span class="info-box-number">1</span>-->
@@ -61,12 +50,12 @@
 						</div>
 					</a>
 				</div>
-				<div class="col-md-3 col-sm-6 col-12">
-					<a href="<?= base_url().'vat_master' ?>">
+				<div class="col-md-4">
+					<a href="<?= base_url().'gst_master' ?>">
 						<div class="info-box">
-							<span class="info-box-icon bg-danger"><i class="far fa-copy"></i></span>
+							<span class="info-box-icon bg-danger"><i class="fas fa-money-check-alt"></i></span>
 							<div class="info-box-content">
-								<span class="info-box-text">VAT Master</span>
+								<span class="info-box-text">GST Master</span>
 								<!--<span class="info-box-number">0</span>-->
 							</div>
 						</div>
@@ -74,10 +63,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3 col-sm-6 col-12">
+				<div class="col-md-4">
 					<a href="<?= base_url().'attendance_master' ?>">
 						<div class="info-box">
-							<span class="info-box-icon bg-info"><i class="far fa-copy"></i></span>
+							<span class="info-box-icon bg-info"><i class="fas fa-book"></i></i></span>
 							<div class="info-box-content">
 								<span class="info-box-text">Attendance Master</span>
 								<!--<span class="info-box-number">1</span>-->
@@ -85,10 +74,10 @@
 						</div>
 					</a>
 				</div>
-				<div class="col-md-3 col-sm-6 col-12">
+				<div class="col-md-4">
 					<a href="<?= base_url().'salary_master' ?>">
 						<div class="info-box">
-							<span class="info-box-icon bg-success"><i class="far fa-copy"></i></span>
+							<span class="info-box-icon bg-success"><i class="fas fa-rupee-sign"></i></span>
 							<div class="info-box-content">
 								<span class="info-box-text">Salary Master</span>
 								<!--<span class="info-box-number">2</span>-->
@@ -96,10 +85,10 @@
 						</div>
 					</a>
 				</div>
-				<div class="col-md-3 col-sm-6 col-12">
+				<div class="col-md-4">
 					<a href="<?= base_url().'shift_timing_master' ?>">
 						<div class="info-box">
-							<span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+							<span class="info-box-icon bg-warning"><i class="fas fa-clock"></i></span>
 							<div class="info-box-content">
 								<span class="info-box-text">Shift Timing Master</span>
 								<!--<span class="info-box-number">0</span>-->
